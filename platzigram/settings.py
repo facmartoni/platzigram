@@ -112,7 +112,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-ar'
 
 TIME_ZONE = 'America/Argentina/Tucuman'
 
@@ -152,4 +152,6 @@ MEDIA_URL = '/media/'
 
 # Login required 👇🏼
 
-LOGIN_URL = 'login'
+LOGIN_URL = 'users:login'
+LOGIN_REDIRECT_URL = 'posts:feed'
+LOGOUT_REDIRECT_URL = LOGIN_URL

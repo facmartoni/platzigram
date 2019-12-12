@@ -8,13 +8,13 @@ from django.contrib.auth.models import User
 from users.models import Profile
 
 
-class ProfileForm(forms.Form):
-    """Profile form"""
+# class ProfileForm(forms.Form):
+#     """Profile form"""
 
-    website = forms.URLField(max_length=200, required=True)
-    biography = forms.CharField(max_length=500, required=False)
-    phone_number = forms.CharField(max_length=20, required=False)
-    picture = forms.ImageField(required=False)
+#     website = forms.URLField(max_length=200, required=True)
+#     biography = forms.CharField(max_length=500, required=False)
+#     phone_number = forms.CharField(max_length=20, required=False)
+#     picture = forms.ImageField(required=False)
 
 
 class LoginForm(forms.ModelForm):
@@ -23,6 +23,19 @@ class LoginForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ('username', 'password')
+
+    def clean(self):
+        """User must exist"""
+
+        data = super().clean()
+
+        username = self.cleaned_data['username']
+        username_exist = User.objects.filter(username=username).exists()
+        if not username_exist:
+            raise forms.ValidationError('El usuario ingresado no existe')
+        return username
+
+        return data
 
 
 class SignupForm(forms.Form):
@@ -33,7 +46,7 @@ class SignupForm(forms.Form):
         max_length=50,
         widget=forms.TextInput(attrs={
             'class': 'form-control',
-            'placeholder': 'Username',
+            'placeholder': 'Nombre de usuario',
             'required': True
         })
     )
@@ -42,7 +55,7 @@ class SignupForm(forms.Form):
         max_length=70,
         widget=forms.PasswordInput(attrs={
             'class': 'form-control',
-            'placeholder': 'Password',
+            'placeholder': 'Contraseña',
             'required': True
         })
     )
@@ -51,7 +64,7 @@ class SignupForm(forms.Form):
         max_length=70,
         widget=forms.PasswordInput(attrs={
             'class': 'form-control',
-            'placeholder': 'Password confirmation',
+            'placeholder': 'Confirmar contraseña',
             'required': True
 
         })
@@ -62,7 +75,7 @@ class SignupForm(forms.Form):
         max_length=50,
         widget=forms.TextInput(attrs={
             'class': 'form-control',
-            'placeholder': 'First name',
+            'placeholder': 'Nombre',
             'required': True
         })
     )
@@ -72,7 +85,7 @@ class SignupForm(forms.Form):
         max_length=50,
         widget=forms.TextInput(attrs={
             'class': 'form-control',
-            'placeholder': 'Last name',
+            'placeholder': 'Apellido',
             'required': True
         })
     )
@@ -92,8 +105,16 @@ class SignupForm(forms.Form):
         username = self.cleaned_data['username']
         username_taken = User.objects.filter(username=username).exists()
         if username_taken:
-            raise forms.ValidationError('Username is already in use')
+            raise forms.ValidationError('El nombre de usuario ya está en uso')
         return username
+
+    def clean_email(self):
+        """Username must be unique"""
+        email = self.cleaned_data['email']
+        email_taken = User.objects.filter(email=email).exists()
+        if email_taken:
+            raise forms.ValidationError('El email ingresado ya está en uso')
+        return email
 
     def clean(self):
         """Verify password confirmation match"""
@@ -103,7 +124,7 @@ class SignupForm(forms.Form):
         password_confirmation = data['password_confirmation']
 
         if password != password_confirmation:
-            raise forms.ValidationError('Passwords do not match')
+            raise forms.ValidationError('Las contraseñas no coinciden')
 
         return data
 

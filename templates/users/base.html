@@ -16,13 +16,21 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" crossorigin="anonymous" />
 </head>
 <body class="h-100">
-    <div class="container h-100">
-        <div class="row h-100 justify-content-center align-items-center">
-            <div class="col-sm-12 col-md-5 col-lg-5 pt-2 pl-5 pr-5 pb-5" id="auth-container">
-                <img src="{% static "img/instagram.png" %}" class="img-fluid rounded mx-auto d-block pb-4" style="max-width: 60%;">
-
-                {% block container %}{% endblock%}
+    <div class="container d-flex flex-column justify-content-center py-4">
+        <div class="row justify-content-center align-items-center mb-4">
+            <div class="col-sm-12 col-md-5 col-lg-5 py-5 px-5 auth-container">
+                <img 
+                src="{% static "img/instagram_black.png" %}" 
+                class="img-fluid rounded mx-auto d-block pb-4" 
+                style="max-width: 40%;"
+                >
+                {% block container %}{% endblock %}
             </div>
+        </div>
+        <div class="row justify-content-center align-items-center">
+            <div class="col-sm-12 col-md-5 col lg 5 py-3 px-5 auth-container text-center">
+                {% block more_info %}{% endblock %}
+            </div>        
         </div>
     </div>
 

@@ -1,46 +1,86 @@
-html, body {
-    background: #fafafa;
-    height: 100%;
-    width: 100%;
-    font-family: 'Roboto', sans-serif;
+html,
+body {
+  background: #090909;
+  height: 100%;
+  width: 100%;
+  font-family: "Roboto", sans-serif;
+  color: #fff;
 }
 
-#auth-container {
-    background: #fff;
-    border: 1px solid #e6e6e6;
-    border-radius: 1px;
+.auth-container {
+  background: #121212;
+  border: 1px solid #141414;
+  border-radius: 1px;
 }
 
 #main-navbar {
-    background: #fff;
-    border-bottom: 1px solid rgba(0,0,0,.0975);
+  background: #121212;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.0975);
 }
 
 .post-container {
-    background: #fff;
-    border: 1px solid #e6e6e6;
-    border-radius: 3px;
+  background: #121212;
+  border: 1px solid #141414;
+  border-radius: 3px;
 }
 
 .nav-icon a {
-    color: #262626;
-    font-size: 1.3em;
-    display: block;
-    margin-top: .2em;
-    margin-left: 1.2em;
-    font-weight: 100;
+  color: #262626;
+  font-size: 1.3em;
+  display: block;
+  margin-top: 0.2em;
+  margin-left: 1.2em;
+  font-weight: 100;
 }
 .nav-icon a:hover {
-    color: #1d5e72;;
+  color: #1d5e72;
 }
 #profile-box {
-    background: #fff;
-    border: 1px solid rgba(0,0,0,.0975);
-    border-radius: 1px;
-    margin-top: 6em;
+  background: #121212;
+  border: 1px solid rgba(0, 0, 0, 0.0975);
+  border-radius: 1px;
+  margin-top: 6em;
 }
 
 #user-posts #post-thumb {
-    background: #fff;
+  background: #121212;
 }
 
+.user-image {
+  width: 35px !important;
+  height: 35px !important;
+  object-fit: cover !important;
+}
+
+.user-big-image {
+  width: 150px !important;
+  height: 150px !important;
+  object-fit: cover !important;
+}
+
+/* Pagination color */
+
+.pagination > li > a {
+  background-color: #121212;
+  color: white;
+}
+
+.pagination > li > a:focus,
+.pagination > li > a:hover,
+.pagination > li > span:focus,
+.pagination > li > span:hover {
+  color: white;
+  background-color: #141414;
+  border-color: #ddd;
+}
+
+.pagination > .active > a {
+  color: #121212;
+  background-color: white !Important;
+  border: solid 1px white !Important;
+}
+
+.pagination > .active > a:hover {
+  background-color: white !Important;
+  border: solid 1px white;
+}

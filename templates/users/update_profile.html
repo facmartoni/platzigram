@@ -12,7 +12,7 @@
       <div class="col-12 col-md-6 p-4 mb-5" id="profile-box">
 
         <form 
-            action="{% url 'update_profile' %}"
+            action="{% url 'users:update' %}"
             method="POST"
             enctype="multipart/form-data"
         >
@@ -20,7 +20,7 @@
           
           {% if request.method == "POST" %}
             {% if not form.errors %}
-              <p class="alert alert-success">Changes saved successfully!</p>
+              <p class="alert alert-success">Cambios guardados correctamente!</p>
             {% endif %}
           {% endif %}
 
@@ -48,14 +48,15 @@
           {# Website Field #}
           
           <div class="form-group">
-            <label>Website</label>
+            <label>Sitio Web</label>
             <input
                 class="form-control {% if form.website.errors %}is-invalid{% endif %}"
                 name="website"
                 type="url"
-                placeholder="Website"
+                placeholder="Sitio Web"
                 value="{% if form.errors %}{{ form.website.value }}{% else %}{{ profile.website }}{% endif %}"
                 />
+            <small class="font-italic text-muted">Opcional</small>
             <div class="invalid-feedback">
               {% for error in form.website.errors %}
                 {{ error }}
@@ -66,7 +67,7 @@
           {# Biography Field #}
 
           <div class="form-group">
-            <label>Biography</label>
+            <label>Biografía</label>
             <textarea class="form-control {% if form.biography.errors %}is-invalid{% endif %}" name="biography">{% if form.errors %}{{ form.biography.value }}{% else %}{{ profile.biography }}{% endif %}</textarea>
             <div class="invalid-feedback">
               {% for error in form.biography.errors %}
@@ -78,14 +79,15 @@
           {# Phone Number Field #}
 
           <div class="form-group">
-            <label>Phone number</label>
+            <label>Teléfono</label>
             <input
                 class="form-control {% if form.phone_number.errors %}is-invalid{% endif %}"
                 name="phone_number"
                 type="text"
-                placeholder="Phone number"
+                placeholder="Teléfono"
                 value="{% if form.errors %}{{ form.phone_number.value }}{% else %}{{ profile.phone_number }}{% endif %}"
-                />
+            />
+            <small class="font-italic text-muted">Opcional</small>
             <div class="invalid-feedback">
               {% for error in form.phone_number.errors %}
                 {{ error }}
@@ -93,7 +95,7 @@
             </div>
           </div>
 
-          <button class="btn btn-primary btn-block" type="submit">Submit</button>
+          <button class="btn btn-dark btn-block" type="submit">Guardar</button>
         </form>
       </div>
     </div>
